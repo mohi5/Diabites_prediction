@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff8a00, #e52e71);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #e52e71;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .form-control {
+            border: 2px solid #e52e71;
+            border-radius: 5px;
+            padding-left: 40px;
+        }
+        .form-group i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #e52e71;
+        }
+        .btn-primary {
+            width: 100%;
+            background-color: #e52e71;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #ff8a00;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            color: #e52e71;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes Prediction</h1>
+        <form action="{{ url_for('predict_datapoint') }}" method="post">
+            <div class="form-group">
+                <i class="fas fa-baby"></i>
+                <input type="text" class="form-control" id="Pregnancies" name="Pregnancies" placeholder="Enter number of pregnancies" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-apple-alt"></i>
+                <input type="text" class="form-control" id="Glucose" name="Glucose" placeholder="Enter glucose level" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-heartbeat"></i>
+                <input type="text" class="form-control" id="BloodPressure" name="BloodPressure" placeholder="Enter blood pressure" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-ruler"></i>
+                <input type="text" class="form-control" id="SkinThickness" name="SkinThickness" placeholder="Enter skin thickness" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-syringe"></i>
+                <input type="text" class="form-control" id="Insulin" name="Insulin" placeholder="Enter insulin level" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-weight"></i>
+                <input type="text" class="form-control" id="BMI" name="BMI" placeholder="Enter BMI" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-dna"></i>
+                <input type="text" class="form-control" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction" placeholder="Enter diabetes pedigree function" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <input type="text" class="form-control" id="Age" name="Age" placeholder="Enter age" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        {% if result %}
+        <div class="result">
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
